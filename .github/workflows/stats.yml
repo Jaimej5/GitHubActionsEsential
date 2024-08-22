@@ -1,0 +1,32 @@
+name: Stats
+on: #Se lanza cuando... (push a main)
+  push:
+    branches: [main]
+    
+jobs: #Pasos
+  build: #Tipo de paso
+    runs-on: ubuntu-latest #Runner
+
+    permissions:
+      contents: write
+    
+    steps: #Subpaso/s que lanzan cada action que ejecuta nuestro código (llamando a otras actions ya construidas con uses)
+      - name: Checkout repo
+        uses: actions/checkout@v4 #Necesita (en este caso un checkout del código)
+
+      - name: Setup Python
+        uses: actions/setup-python@v5 #Configurar python para ejecutar el fichero
+        with:
+          python-version: '3.8'
+
+      - name: Run script
+        run: python ./Roadmap/stats.py
+
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update stats
+          commit_user_name: Jaime JC [Github Actions]
+          commit_user_email: jaimejsc5@gmail.com
+          commit_author: Jaimej5
+    
