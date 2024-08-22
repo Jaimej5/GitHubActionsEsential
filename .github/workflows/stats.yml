@@ -19,8 +19,11 @@ jobs: #Pasos
         with:
           python-version: '3.8'
 
+      - name: Change to Roadmap directory
+        run: cd Roadmap
+
       - name: Run script
-        run: python ./Roadmap/stats.py
+        run: python stats.py
 
       - name: Commit and push
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -29,4 +32,3 @@ jobs: #Pasos
           commit_user_name: Jaime JC [Github Actions]
           commit_user_email: jaimejsc5@gmail.com
           commit_author: Jaimej5
-    
